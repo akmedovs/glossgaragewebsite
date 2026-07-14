@@ -1,0 +1,8 @@
+services:
+  glossgarage:
+    build: .
+    container_name: glossgarage
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
