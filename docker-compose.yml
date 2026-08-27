@@ -5,4 +5,22 @@ services:
     ports:
       - "8080:80"
     restart: unless-stopped
+    depends_on:
+      - admin-api
 
+  admin-api:
+    image: node:20-alpine
+    container_name: glossgarage-admin-api
+    working_dir: /app
+    command: ["node", "/app/admin-api/server.js"]
+    environment:
+      PORT: "3000"
+      ADMIN_PASSWORD: "glossgarage-admin"
+      DATA_DIR: "/data"
+    volumes:
+      - ./:/app:ro
+      - glossgarage_admin_data:/data
+    restart: unless-stopped
+
+volumes:
+  glossgarage_admin_data:

@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gloss Garage Admin | Sayt İdarəsi</title>
+    <link rel="stylesheet" href="/styles.css?v=20260813-1605" />
+  </head>
+  <body class="admin-body admin-locked">
+    <main class="admin-shell">
+      <section class="admin-hero">
+        <p class="eyebrow">Gloss Garage Admin</p>
+        <h1>Sadə redaktə paneli</h1>
+        <p class="lead">Mətnləri dəyiş, şəkil əlavə et və lazımsız kartları sil. Hər blok ayrıca açılır.</p>
+      </section>
+
+      <div class="admin-status" id="admin-status">Giriş gözlənilir.</div>
+
+      <section class="admin-login" id="admin-login">
+        <form class="admin-login-card" id="admin-login-form">
+          <div class="admin-login-top">
+            <p class="eyebrow">Giriş pəncərəsi</p>
+            <h2>Admin panelinə daxil ol</h2>
+            <p>Gloss Garage məzmununu redaktə etmək üçün şifrəni daxil et.</p>
+          </div>
+
+          <label class="admin-login-field">
+            <span>Admin şifrəsi</span>
+            <input id="admin-password" type="password" placeholder="Şifrəni daxil et" autocomplete="current-password" />
+          </label>
+
+          <button class="button primary" id="load-content" type="submit">Daxil ol</button>
+        </form>
+      </section>
+
+      <section class="admin-panel" id="admin-panel" hidden>
+        <p class="admin-note">Ən çox dəyişdiyin hissə: hero, kartlar, əvvəl/sonra şəkillər və əlaqə məlumatı.</p>
+
+        <form class="admin-form" id="content-form">
+          <details class="admin-section" id="section-hero" open>
+            <summary>
+              <span>1. Əsas mətnlər</span>
+              <small>Başlıq, qısa mətn və düymələr</small>
+            </summary>
+            <div class="admin-section-head">
+              <p>Burada ana səhifədə görünən ən vacib sözlər saxlanır.</p>
+            </div>
+            <div class="admin-grid-two">
+              <label>
+                <span>Yuxarı etiket</span>
+                <input name="hero.eyebrow" type="text" />
+              </label>
+              <label>
+                <span>Ana başlıq</span>
+                <input name="hero.title" type="text" />
+              </label>
+            </div>
+            <label>
+              <span>Qısa açıqlama</span>
+              <textarea name="hero.description" rows="3"></textarea>
+            </label>
+            <div class="admin-grid-two">
+              <label>
+                <span>Birinci düymə mətni</span>
+                <input name="hero.primaryCtaLabel" type="text" />
+              </label>
+              <label>
+                <span>Birinci düymə linki</span>
+                <input name="hero.primaryCtaUrl" type="url" />
+              </label>
+              <label>
+                <span>İkinci düymə mətni</span>
+                <input name="hero.secondaryCtaLabel" type="text" />
+              </label>
+              <label>
+                <span>İkinci düymə linki</span>
+                <input name="hero.secondaryCtaUrl" type="text" />
+              </label>
+            </div>
+            <label>
+              <span>Qısa üstünlüklər</span>
+              <textarea name="hero.highlights" rows="3" placeholder="Hər sətirdə bir highlight"></textarea>
+            </label>
+          </details>
+
+          <details class="admin-section" id="section-services">
+            <summary>
+              <span>2. Xidmət kartları</span>
+              <small>İki kart növü: xidmət və üstünlük</small>
+            </summary>
+            <div class="admin-section-head">
+              <p>Xidmət və üstünlük kartları siyahı kimi görünür. Kart əlavə edib silə bilərsən.</p>
+            </div>
+            <div class="admin-grid-two">
+              <label>
+                <span>Xidmət bölmə başlığı</span>
+                <input name="services.title" type="text" />
+              </label>
+              <label>
+                <span>Xidmət bölmə açıqlaması</span>
+                <input name="services.description" type="text" />
+              </label>
+            </div>
+            <div class="admin-toolbar">
+              <button class="button secondary" id="add-service" type="button">Yeni xidmət kartı</button>
+            </div>
+            <div class="admin-items" id="services-items"></div>
+          </details>
+
+          <details class="admin-section" id="section-trust">
+            <summary>
+              <span>3. Üstünlük kartları</span>
+              <small>Qısa etibar mesajları</small>
+            </summary>
+            <div class="admin-section-head">
+              <p>Qısa, bir cümləlik güvən mesajları üçün istifadə olunur.</p>
+            </div>
+            <div class="admin-grid-two">
+              <label>
+                <span>Üstünlük başlığı</span>
+                <input name="trust.title" type="text" />
+              </label>
+              <label>
+                <span>Üstünlük açıqlaması</span>
+                <input name="trust.description" type="text" />
+              </label>
+            </div>
+            <div class="admin-toolbar">
+              <button class="button secondary" id="add-trust" type="button">Yeni üstünlük kartı</button>
+            </div>
+            <div class="admin-items" id="trust-items"></div>
+          </details>
+
+          <details class="admin-section" id="section-gallery">
+            <summary>
+              <span>4. Şəkillər</span>
+              <small>Əvvəl / sonra və şəkil silmə</small>
+            </summary>
+            <div class="admin-section-head">
+              <p>Burada şəkil yükləyir, əvvəl/sonra dəyişir və lazım olan kartı silirsən.</p>
+            </div>
+            <div class="admin-grid-two">
+              <label>
+                <span>Şəkil bölmə başlığı</span>
+                <input name="gallery.title" type="text" />
+              </label>
+              <label>
+                <span>Şəkil bölmə açıqlaması</span>
+                <input name="gallery.description" type="text" />
+              </label>
+              <label>
+                <span>Düymə mətni</span>
+                <input name="gallery.ctaLabel" type="text" />
+              </label>
+              <label>
+                <span>Düymə linki</span>
+                <input name="gallery.ctaUrl" type="url" />
+              </label>
+            </div>
+            <div class="admin-toolbar">
+              <button class="button secondary" id="add-gallery" type="button">Yeni şəkil kartı</button>
+            </div>
+            <div class="admin-items" id="gallery-items"></div>
+          </details>
+
+          <details class="admin-section" id="section-reviews">
+            <summary>
+              <span>5. Rəylər</span>
+              <small>Qiymət, qısa mətn və müştəri fikri</small>
+            </summary>
+            <div class="admin-section-head">
+              <p>Burada orta reytinq və rəy siyahısı dəyişir.</p>
+            </div>
+            <div class="admin-grid-two">
+              <label>
+                <span>Rəy bölmə başlığı</span>
+                <input name="reviews.title" type="text" />
+              </label>
+              <label>
+                <span>Rəy bölmə açıqlaması</span>
+                <input name="reviews.description" type="text" />
+              </label>
+              <label>
+                <span>Orta reytinq</span>
+                <input name="reviews.score" type="text" />
+              </label>
+              <label>
+                <span>Reytinq alt mətni</span>
+                <input name="reviews.scoreLabel" type="text" />
+              </label>
+            </div>
+            <label>
+              <span>Qısa yekun mətn</span>
+              <textarea name="reviews.summary" rows="3"></textarea>
+            </label>
+            <div class="admin-toolbar">
+              <button class="button secondary" id="add-review" type="button">Yeni rəy</button>
+            </div>
+            <div class="admin-items" id="reviews-items"></div>
+          </details>
+
+          <details class="admin-section" id="section-contact">
+            <summary>
+              <span>6. Əlaqə</span>
+              <small>Telefon, xəritə və Instagram</small>
+            </summary>
+            <div class="admin-section-head">
+              <p>Telefon, xəritə, WhatsApp və başqa əlaqə düymələri burada dəyişir.</p>
+            </div>
+            <div class="admin-grid-two">
+              <label>
+                <span>Əlaqə bölmə başlığı</span>
+                <input name="contact.title" type="text" />
+              </label>
+              <label>
+                <span>Əlaqə bölmə açıqlaması</span>
+                <input name="contact.description" type="text" />
+              </label>
+              <label>
+                <span>Alt CTA başlığı</span>
+                <input name="contact.ctaTitle" type="text" />
+              </label>
+              <label>
+                <span>Alt CTA açıqlaması</span>
+                <input name="contact.ctaDescription" type="text" />
+              </label>
+              <label>
+                <span>Ünvan mətni</span>
+                <input name="contact.addressLabel" type="text" />
+              </label>
+              <label>
+                <span>Ünvan dəyəri</span>
+                <input name="contact.addressValue" type="text" />
+              </label>
+              <label>
+                <span>İş saatı mətni</span>
+                <input name="contact.hoursLabel" type="text" />
+              </label>
+              <label>
+                <span>İş saatı dəyəri</span>
+                <input name="contact.hoursValue" type="text" />
+              </label>
+              <label>
+                <span>Telefon mətni</span>
+                <input name="contact.phoneLabel" type="text" />
+              </label>
+              <label>
+                <span>Telefon dəyəri</span>
+                <input name="contact.phoneValue" type="text" />
+              </label>
+              <label>
+                <span>WhatsApp mətni</span>
+                <input name="contact.whatsappLabel" type="text" />
+              </label>
+              <label>
+                <span>WhatsApp linki</span>
+                <input name="contact.whatsappUrl" type="url" />
+              </label>
+              <label>
+                <span>Telefon linki</span>
+                <input name="contact.phoneUrl" type="text" />
+              </label>
+              <label>
+                <span>Xəritə mətni</span>
+                <input name="contact.mapLabel" type="text" />
+              </label>
+              <label>
+                <span>Xəritə linki</span>
+                <input name="contact.mapUrl" type="url" />
+              </label>
+              <label>
+                <span>Instagram mətni</span>
+                <input name="contact.instagramLabel" type="text" />
+              </label>
+              <label>
+                <span>Instagram linki</span>
+                <input name="contact.instagramUrl" type="url" />
+              </label>
+            </div>
+          </details>
+
+          <div class="admin-toolbar sticky">
+            <button class="button primary" type="submit">Yadda saxla</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="/admin/app.js?v=20260813-1605"></script>
+  </body>
+</html>
